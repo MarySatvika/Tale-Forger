@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaleForge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* All your existing CSS from the previous response goes here.
+           Make sure to add the .signup-link CSS from the login page code. */
+        :root {
+            --bg-color: #1a1a2e;
+            --card-color: #2b2b40;
+            --accent-color-1: #b860ff; /* Purple */
+            --accent-color-2: #8aff8a; /* Neon Green */
+            --text-color: #f0f0f0;
+            --subtle-text-color: #ccc;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--card-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+            border: 2px solid var(--accent-color-2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color-2);
+            text-align: center;
+            text-shadow: 0 0 5px var(--accent-color-2);
+            margin-bottom: 1.5rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color-1);
+            text-shadow: 0 0 10px var(--accent-color-1);
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .action-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .primary-btn {
+            background-color: var(--accent-color-2);
+            color: var(--bg-color);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 255, 138, 0.4);
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: var(--accent-color-1);
+            border: 2px solid var(--accent-color-1);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: var(--accent-color-1);
+            color: var(--bg-color);
+            transform: scale(1.05);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--subtle-text-color);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--card-color);
+            background-color: #33334d;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 10px var(--accent-color-1);
+        }
+
+        .genre-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .genre-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color-1);
+            border-radius: 50px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: all 0.3s ease-in-out;
+            text-transform: uppercase;
+        }
+
+        .genre-btn:hover {
+            background-color: var(--accent-color-1);
+            box-shadow: 0 0 15px var(--accent-color-1);
+            transform: translateY(-3px);
+        }
+
+        .genre-btn.selected {
+            background-color: var(--accent-color-2);
+            color: var(--bg-color);
+            border-color: var(--accent-color-2);
+            box-shadow: 0 0 15px var(--accent-color-2);
+            transform: scale(1.05);
+        }
+
+        .story-output-card {
+            border: 2px solid var(--accent-color-1);
+        }
+
+        .story-box {
+            background-color: #26263b;
+            padding: 2rem;
+            border-radius: 12px;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            border-left: 5px solid var(--accent-color-2);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .login-card {
+            border: 2px solid var(--accent-color-1);
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--subtle-text-color);
+        }
+
+        .signup-link a {
+            color: var(--accent-color-1);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            color: var(--accent-color-2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="login-page">
+            <h1 class="logo">TaleForge</h1>
+            <div class="card login-card">
+                <h2>Login to Your Account</h2>
+                <form id="login-form">
+                    <div class="input-group">
+                        <label for="username">Username or Email</label>
+                        <input type="text" id="username" placeholder="Enter your username or email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="action-btn primary-btn login-btn">Login</button>
+                </form>
+                <p class="signup-link">Don't have an account? <a href="register.html">Sign Up</a></p>
+            </div>
+        </div>
+
+        <div id="dashboard-page" class="hidden">
+            <header>
+                <h1 class="logo">TaleForge</h1>
+                <button id="logout-btn" class="action-btn logout-btn">Logout</button>
+            </header>
+
+            <main class="card">
+                <h2>Create Your Story</h2>
+                <section class="genre-section">
+                    <h3>Select Genres</h3>
+                    <div id="genre-selector" class="genre-grid">
+                        <button class="genre-btn" data-genre="Fantasy">Fantasy</button>
+                        <button class="genre-btn" data-genre="Sci-Fi">Sci-Fi</button>
+                        <button class="genre-btn" data-genre="Horror">Horror</button>
+                        <button class="genre-btn" data-genre="Comedy">Comedy</button>
+                        <button class="genre-btn" data-genre="Mystery">Mystery</button>
+                        <button class="genre-btn" data-genre="Romance">Romance</button>
+                        <button class="genre-btn" data-genre="Adventure">Adventure</button>
+                        <button class="genre-btn" data-genre="Thriller">Thriller</button>
+                        <button class="genre-btn" data-genre="Dystopian">Dystopian</button>
+                    </div>
+                </section>
+
+                <section class="hints-section">
+                    <h3>Provide Hints</h3>
+                    <div class="hints-form">
+                        <div class="input-group">
+                            <label for="story-title">Story Title</label>
+                            <input type="text" id="story-title" placeholder="e.g., The Midnight Glitch">
+                        </div>
+                        <div class="input-group">
+                            <label for="story-hints">Story Hints</label>
+                            <textarea id="story-hints" rows="6" placeholder="Describe the characters, setting, and key plot points..."></textarea>
+                        </div>
+                        <button id="submit-hints-btn" class="action-btn primary-btn">Generate Story</button>
+                    </div>
+                </section>
+            </main>
+
+            <section id="story-output-section" class="card story-output-card hidden">
+                <h3>Your Generated Story</h3>
+                <div id="story-output" class="story-box"></div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        /* All your existing JavaScript goes here. */
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginPage = document.getElementById('login-page');
+            const dashboardPage = document.getElementById('dashboard-page');
+            const loginForm = document.getElementById('login-form');
+            const logoutBtn = document.getElementById('logout-btn');
+            const genreButtons = document.querySelectorAll('.genre-btn');
+            const submitHintsBtn = document.getElementById('submit-hints-btn');
+            const storyTitleInput = document.getElementById('story-title');
+            const storyHintsTextarea = document.getElementById('story-hints');
+            const storyOutputSection = document.getElementById('story-output-section');
+            const storyOutputDiv = document.getElementById('story-output');
+
+            let selectedGenres = new Set();
+
+            // Handle Login
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                if (username && password) {
+                    // Simulate successful login
+                    loginPage.classList.add('hidden');
+                    dashboardPage.classList.remove('hidden');
+                } else {
+                    alert('Please enter both username and password.');
+                }
+            });
+
+            // Handle Logout
+            logoutBtn.addEventListener('click', () => {
+                dashboardPage.classList.add('hidden');
+                loginPage.classList.remove('hidden');
+                // Clear inputs for next login
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            });
+
+            // Handle Genre Selection
+            genreButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const genre = button.dataset.genre;
+                    if (selectedGenres.has(genre)) {
+                        selectedGenres.delete(genre);
+                        button.classList.remove('selected');
+                    } else {
+                        selectedGenres.add(genre);
+                        button.classList.add('selected');
+                    }
+                });
+            });
+
+            // Handle Story Generation
+            if (submitHintsBtn) {
+                submitHintsBtn.addEventListener('click', () => {
+                    const title = storyTitleInput.value;
+                    const hints = storyHintsTextarea.value;
+                    const genresArray = Array.from(selectedGenres);
+
+                    if (!title || !hints || genresArray.length === 0) {
+                        alert('Please provide a title, hints, and select at least one genre.');
+                        return;
+                    }
+
+                    submitHintsBtn.textContent = 'Generating...';
+                    submitHintsBtn.disabled = true;
+
+                    // Simulate API call and story generation
+                    setTimeout(() => {
+                        const simulatedStory = `In a world where technology and magic co-exist, a young code-mage named Elara and her chaotic-good A.I. companion, Glitch, discovered a cosmic anomaly. The anomaly threatened to merge all digital and physical realities, causing glitches in the very fabric of existence. Driven by courage and an insatiable curiosity, Elara and Glitch embark on a quest through the digital wastelands and enchanted forests, seeking the source of the anomaly. Their journey is a blend of cyber-punk adventure and fantasy, where they must solve riddles from ancient spirits and debug a sentient network. The fate of both realms depends on their ability to find the core glitch and re-code the universe before it implodes into a singularity of chaos.`;
+                        
+                        storyOutputDiv.textContent = simulatedStory;
+                        storyOutputSection.classList.remove('hidden');
+                        submitHintsBtn.textContent = 'Generate Story';
+                        submitHintsBtn.disabled = false;
+                    }, 2000); 
+                });
+            }
+        });
+    </script>
+</body>
+</html>
