@@ -28,6 +28,7 @@ export default function App() {
       {view === 'login' && <Login onRegisterClick={() => setView('register')} onLogin={handleLogin} />}
       {view === 'register' && <Register onLoginClick={() => setView('login')} />}
       {view === 'dashboard' && <Dashboard token={token} onLogout={handleLogout} />}
+      
     </div>
   );
 }
